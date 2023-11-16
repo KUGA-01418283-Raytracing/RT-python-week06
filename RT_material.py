@@ -63,3 +63,25 @@ class Mirror(Material):
 
         # return scattering info
         return rtu.Scatterinfo(reflected_ray, attenuation_color)
+
+# A dielectric transparent material 
+class Dielectric(Material):
+    def __init__(self, cAlbedo, fIor) -> None:
+        super().__init__()
+        self.color_albedo = rtu.Color(cAlbedo.r(), cAlbedo.g(), cAlbedo.b())
+        self.IOR = fIor
+
+    def scattering(self, rRayIn, hHinfo):
+        attenuation_color = self.color_albedo
+        refract_ratio = self.IOR
+        if hHinfo.front_face:
+            refract_ratio = 1.0/self.IOR
+
+        # generate a refracted ray
+        uv = rtu.Vec3.unit_vector(rRayIn.getDirection())
+        refracted_dir = refract(uv, hHinfo.getNormal(), refract_ratio)
+        scattered_ray = rtr.Ray(hHinfo.getP(), refracted_dir)
+
+        # return scattering info
+        return rtu.Scatterinfo(scattered_ray, attenuation_color)
+

@@ -14,5 +14,15 @@ The codes were rewritten and modified from https://raytracing.github.io/books/Ra
 **Class assignment**
 
 1. Implement 'reflect()' function to support a mirror material.
-2. Implement Mirror class.
-3. Render a scene with 3 mirrors.
+2. Implement Mirror class by using 'reflect()' function.
+3. Render a scene with at least 2 mirrors and a point light.
+4. Render a scene with at least 2 mirrors and the sky background (no point light).
+5. Implement Dielectric class by using 'refract()' function.
+6. Render a scene with at least 2 transparent materials and the sky background.
+7. Render a scene with the following materials and the sky background.
+    - a dielectric material with index of refraction = 1.5
+    - a dielectric material with index of refraction = 1.0
+    - a dielectric material with index of refraction = 0.5
+    - a lambertian material
+    - a mirror
+
