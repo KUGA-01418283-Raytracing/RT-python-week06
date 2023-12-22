@@ -28,8 +28,6 @@ class Integrator():
                 # return Le
                 return hmat.emitting()
 
-
-            # Class assignemnt (1.)
             Le = rtu.Color()
             # if direct lighting is enabled
             if self.bool_direct_lighting:
@@ -43,10 +41,10 @@ class Integrator():
                     # if not occluded.
                     if not occlusion_hit:
                         # accumulate all unoccluded light
-                        Le = Le + (light.material.emitting() * (1/max_distance))
+                        Le = Le + (light.material.emitting() * min(1.0, 1.0/max_distance))
 
             # return the color
-            return Le + self.compute_scattering(rtr.Ray(hinfo.getP(), sinfo.scattered_ray.getDirection()), scene, maxDepth-1) * sinfo.attenuation_color
+            return (Le * sinfo.attenuation_color) + self.compute_scattering(rtr.Ray(hinfo.getP(), sinfo.scattered_ray.getDirection()), scene, maxDepth-1) * sinfo.attenuation_color
 
         return scene.get_sky_background_color(rGen_ray)
         # return scene.getBackgroundColor()
