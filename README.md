@@ -13,6 +13,13 @@ The codes were rewritten and modified from https://raytracing.github.io/books/Ra
 
 **Class assignment**
 
+Note that to submit the rendered results, please use the following parameters.
+- at least 100 samples per pixel.
+- at least 5 max depth.
+- resolution width = 480p.
+- aspect ratio = 16:9.
+
+
 1. Implement 'reflect()' function to support a mirror material.
 2. Implement Mirror class by using 'reflect()' function.
 3. Render a scene with at least 2 mirrors and a point light.
